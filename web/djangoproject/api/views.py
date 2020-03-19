@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.serializers import UserSerializer, GroupSerializer
+from api.serializers import UserSerializer, GroupSerializer, CourseSerializer, HoleSerializer
+from api.models import Course, Hole
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,4 +20,22 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows courses to be viewed or edited.
+    """
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class HoleViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows courses to be viewed or edited.
+    """
+    queryset = Hole.objects.all()
+    serializer_class = HoleSerializer
     permission_classes = [permissions.IsAuthenticated]
