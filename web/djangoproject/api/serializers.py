@@ -58,7 +58,7 @@ class EventScoreSerializer(serializers.BaseSerializer):
             'player_first_name': instance.first_name,
             'player_last_name': instance.last_name,
             'score': instance.score__score__sum,
-            'par_on_played_holes': instance.score__tee__hole__count,
+            'par_on_played_holes': instance.score__tee__hole__par__sum,
             'score_to_par': instance.score__score__sum - instance.score__tee__hole__count,
             'through': instance.score__tee__hole__count,
         }
